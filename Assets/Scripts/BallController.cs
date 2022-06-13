@@ -36,4 +36,9 @@ public class BallController : MonoBehaviour
         }
     }
 
+    public void ActivatePUSpeedUp(float magnitude)
+    {
+        rig.velocity *= magnitude;
+    }
+
 }
