@@ -12,7 +12,7 @@ public class PUTemplateController : MonoBehaviour
 
     protected float timer;
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
         lifeSpan = lifeSpan is 0 ? manager.lifeSpan : lifeSpan; //if 0 use value from manager
     }
