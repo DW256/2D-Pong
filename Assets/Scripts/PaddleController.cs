@@ -5,15 +5,20 @@ using UnityEngine;
 public class PaddleController : MonoBehaviour
 {
 
-    public int speed;
+    public float speed;
     public KeyCode upKey;
     public KeyCode downKey;
     private Rigidbody2D rig;
+
+    private Vector3 initialSize;
+    private float initialSpeed;
 
     // Start is called before the first frame update
     private void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+        initialSize = gameObject.transform.localScale;
+        initialSpeed = speed;
     }
 
     // Update is called once per frame
@@ -41,5 +46,24 @@ public class PaddleController : MonoBehaviour
         rig.velocity = movement;
     }
 
+    public void ActivatePUPaddleLong(float magnitude)
+    {
+        gameObject.transform.localScale = new Vector3(initialSize.x, initialSize.y * magnitude, initialSize.z);
+    }
+    
+    public void DeactivatePUPaddleLong()
+    {
+        gameObject.transform.localScale = initialSize;
+    }
+
+    public void ActivatePUPaddleFast(float magnitude)
+    {
+        speed *= magnitude;
+    }
+
+    public void DeactivatePUPaddleFast()
+    {
+        speed = initialSpeed;
+    }
 
 }

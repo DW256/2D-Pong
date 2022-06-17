@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-  
+
+    public GameObject exitPanel;
+
     public void PlayGame()
     {
         Debug.Log("Dwi Wahyu Aji - 149251970101-242");
@@ -16,9 +18,26 @@ public class MainMenuController : MonoBehaviour
     {
         Debug.Log("Dwi Wahyu Aji - 149251970101-242");
     }
+
+    public void OpenCredit()
+    {
+        Debug.Log("Dwi Wahyu Aji - 149251970101-242");
+        SceneManager.LoadScene("Credit");
+    }
+
     public void ExitGame()
     {
+        exitPanel.SetActive(true);
+    }
+
+    public void ExitYes() 
+    {
         Application.Quit();
+    }
+
+    public void ExitNo() 
+    {
+        exitPanel.SetActive(false);
     }
 
 }

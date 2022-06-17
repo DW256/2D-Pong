@@ -6,8 +6,10 @@ public class BallController : MonoBehaviour
 {
     public Vector2 speed;
     public Vector2 resetPosition;
+    public bool lastRight=false;
 
     private Rigidbody2D rig;
+    private float maxVelocity = 8;
 
     // Start is called before the first frame update
     private void Start()
@@ -16,10 +18,18 @@ public class BallController : MonoBehaviour
         rig.velocity = speed;
     }
 
-    // Update is called once per frame
-    private void Update()
+    void OnCollisionExit2D(Collision2D paddle)
     {
-
+        if (paddle.gameObject.name == "Paddle R") //last touched paddle = Paddle R
+        {
+            lastRight = true;
+            Debug.Log("Right");
+        }
+        else if(paddle.gameObject.name == "Paddle L")
+        {
+            lastRight = false;
+            Debug.Log("Left");
+        }
     }
 
     public void ResetBall()
@@ -41,4 +51,10 @@ public class BallController : MonoBehaviour
         rig.velocity *= magnitude;
     }
 
+    private void Update()
+    {
+        Debug.Log(rig.velocity);
+        if (rig.velocity == new Vector2(0, 0)) ResetBall();
+        rig.velocity = Vector2.ClampMagnitude(rig.velocity,maxVelocity);
+    }
 }
