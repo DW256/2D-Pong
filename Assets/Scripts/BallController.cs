@@ -51,6 +51,16 @@ public class BallController : MonoBehaviour
         rig.velocity *= magnitude;
     }
 
+    public void ActivatePUBallAttack(float magnitude)
+    {
+        rig.velocity = new Vector2(rig.velocity.x * magnitude, rig.velocity.y);
+    }
+
+    public void ActivatePUBallBlocker(float magnitude)
+    {
+        rig.velocity = new Vector2(rig.velocity.x * -magnitude, rig.velocity.y);
+    }
+
     private void Update()
     {
         Debug.Log(rig.velocity);
